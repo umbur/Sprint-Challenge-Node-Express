@@ -1,5 +1,5 @@
 const express = require('express')
-const router = express.Router()
+const router = express()
 
 const actionDB = require('./data/helpers/actionModel.js')
 const projectDB = require('./data/helpers/projectModel.js')
@@ -16,16 +16,26 @@ server.get('/api/projects', (req,res) => {
 } )
 
 // this is part is not completed
-router.get('/finished/:id', (req, res) => {
+router.get('/api/projects/finished/:id', (req, res) => {
+    const check = req.body;
     const {id} = req.params;
-    projectDB.get(id)
-    .then(actions => {res.json(actions.filter(action => {return action.completed === true}))})
-    .catch( err => {
+    if(check.completed === true){
+        projectDB.get(id)
         res
-        .status(500)
-        .json({"message": "Could not retrieve projects"})
+        .then.json({ success: completed })
+    } else {
+        res
+        .json({ failure: false })
+
     }
-    )
+    // projectDB.get(id)
+    // .then(actions => {res.json({check  })
+    // .catch( err => {
+    //     res
+    //     .status(500)
+    //     .json({"message": "Could not retrieve projects"})
+    // }
+    // )
 
 })
 // this is part is not completed

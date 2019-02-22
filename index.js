@@ -59,6 +59,31 @@ server.get('/api/projects/:id', (req, res) => {
 
 })
 
+server.get('/api/projects/finished/:id', (req, res) => {
+    const {id} = req.params;
+    const check = req.body;
+
+    projectDB.get(id)
+    .then(check => {
+        if (check.completed === true) {
+            res.json({ success: "This project is completed" })
+        }
+
+        else {
+            res
+            .status(404)
+            .json({"message": "Project with that id does not exist"})
+        }
+    }
+    )
+    .catch( err => {
+        res
+        .status(500)
+        .json({"message": "This project is NOT completed"})
+    }
+    )
+})
+
 server.get('/api/actions/:id', (req, res) => {
     const {id} = req.params;
     actionDB.get(id)
