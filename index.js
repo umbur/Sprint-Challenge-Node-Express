@@ -15,14 +15,14 @@ server.use(
     morgan('dev'),
 )
 
-server.get('/api/projects', (req,res) => {
-    projectDB.get()
-    .then((projects) => {res.json(projects)})
-    .catch(err => {
-        res
-        .status(500)
-        .json({message: 'Unable to get projects'})})
-} )
+// server.get('/api/projects', (req,res) => {
+//     projectDB.get()
+//     .then((projects) => {res.json(projects)})
+//     .catch(err => {
+//         res
+//         .status(500)
+//         .json({message: 'Unable to get projects'})})
+// } )
 
 server.get('/api/actions', (req, res) => {
         actionDB.get()

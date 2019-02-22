@@ -2,23 +2,23 @@ const express = require('express')
 const router = express.Router()
 
 const actionDB = require('./data/helpers/actionModel.js')
+const projectDB = require('./data/helpers/projectModel.js')
 
 
 
-router.get('/', (req, res) => {
-    actionDB.get()
-    .then(actions => {res.json(actions)})
-    .catch( err => {
+server.get('/api/projects', (req,res) => {
+    projectDB.get()
+    .then((projects) => {res.json(projects)})
+    .catch(err => {
         res
         .status(500)
-        .json({"message": "Could not retrieve projects"})
-    }
-    )
+        .json({message: 'Unable to get projects'})})
+} )
 
-})
-
-router.get('/finished', (req, res) => {
-    actionDB.get()
+// this is part is not completed
+router.get('/finished/:id', (req, res) => {
+    const {id} = req.params;
+    projectDB.get(id)
     .then(actions => {res.json(actions.filter(action => {return action.completed === true}))})
     .catch( err => {
         res
@@ -28,7 +28,7 @@ router.get('/finished', (req, res) => {
     )
 
 })
-
+// this is part is not completed
 router.get('/unfinished', (req, res) => {
     actionDB.get()
     .then(actions => {res.json(actions.filter(action => {return action.completed === false}))})
@@ -41,7 +41,7 @@ router.get('/unfinished', (req, res) => {
 
 })
 
-
+// this is part is not completed
 router.get('/:id', (req, res) => {
 const {id} = req.params;
 actionDB.get(id)
@@ -63,7 +63,7 @@ actionDB.get(id)
 )
 
 })
-
+// this is part is not completed
 router.post('/', (req,res) => {
 const action = req.body;
 if (action.project_id && action.description && action.notes){
@@ -90,7 +90,7 @@ else {
 
 })
 
-
+// this is part is not completed
 router.delete('/:id', (req,res) => {
 const {id} = req.params;
 actionDB.remove(id)
@@ -112,6 +112,7 @@ actionDB.remove(id)
 })
 })
 
+// this is part is not completed
 router.put('/:id', (req,res) => {
 const action = req.body;
 const {id} = req.params;
