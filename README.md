@@ -26,13 +26,24 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+   A: Express is a web application framework that sits on top of the Node.js web server.
+      Expresss sits on top of the raw http server module provided by Node.js and adds extra functionality, like routing and middleware support, and a simpler API.
+
 - [ ] Describe Middleware?
+
+   A: Middleware functions are functions that have access to the request object ( req ), the response object ( res ), and the next function in the application's request-response cycle.
 
 - [ ] Describe a Resource?
 
+   A: In the context of CRUD endpoints a resource can be any information stored in that endpoints
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+   A: Status codes and messages(usually json).
+
 - [ ] How can we partition our application into sub-applications?
+
+   A: By creating and importing routers and setting up a server.use() at the correct routes.
 
 ## Project Setup
 
